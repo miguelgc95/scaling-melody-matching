@@ -6,12 +6,16 @@ import calculoeventos
 import actualizacionarea
 import dataframe
 import pandas as pd
+import os
 
+BASE_PATH = os.getcwd()
+tqPath = BASE_PATH + '/DB_files/11-D_TPabon.csv'
 
 # (R,Q,maxeps)=auxiliar_functions.generate_melodies()
 result = []
-tq = pd.read_csv(r"C:\Users\Mike\OneDrive\Documentos\TFG\Documentación teórica\TONAS_0 para trastear\TONAS\Deblas\11-D_TPabon.csv",
-                 names=["inicio", "duración", "tono", "nidea"]).drop([0], axis=0)
+print(tqPath)
+tq = pd.read_csv(
+    tqPath, names=["inicio", "duración", "tono", "nidea"]).drop([0], axis=0)
 
 aux = float(tq.iloc[0, 0])
 for i in range(len(tq)):  # recorremos cada nota de lo que va a ser la Q y forzamos comienzo en instante cero y asegurarmos que los datos se tratan como floats y no como str
