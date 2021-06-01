@@ -1,4 +1,4 @@
-# script que  carga los archivos automaticamnte
+# script que carga los archivos automaticamnte
 
 import pandas as pd
 import glob
@@ -8,7 +8,7 @@ def dframe():
     tr = []
     # el metodo .drop para quitar la primera columna/fila?
 
-    for f in glob.glob("*.csv"):
+    for f in glob.glob("./DB_files/*.csv"):
         ff = pd.read_csv(
             f, names=["inicio", "duracion", "tono", "nidea"]).drop([0], axis=0)
         tr.append(ff)

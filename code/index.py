@@ -8,18 +8,19 @@ import dataframe
 import pandas as pd
 import os
 
+# (R,Q,maxeps)=auxiliar_functions.generate_melodies()
+
+# Generate file path
 BASE_PATH = os.getcwd()
 tqPath = BASE_PATH + '/DB_files/11-D_TPabon.csv'
 
-# (R,Q,maxeps)=auxiliar_functions.generate_melodies()
 result = []
-print(tqPath)
 tq = pd.read_csv(
     tqPath, names=["inicio", "duración", "tono", "nidea"]).drop([0], axis=0)
 
 aux = float(tq.iloc[0, 0])
-for i in range(len(tq)):  # recorremos cada nota de lo que va a ser la Q y forzamos comienzo en instante cero y asegurarmos que los datos se tratan como floats y no como str
 
+for i in range(len(tq)):  # recorremos cada nota de lo que va a ser la Q y forzamos comienzo en instante cero y asegurarmos que los datos se tratan como floats y no como str
     if type(tq.iloc[i, 0]) == str:
         tq.iloc[i, 0] = float(tq.iloc[i, 0])
     if type(tq.iloc[i, 1]) == str:
@@ -28,7 +29,7 @@ for i in range(len(tq)):  # recorremos cada nota de lo que va a ser la Q y forza
         tq.iloc[i, 2] = float(tq.iloc[i, 2])
     tq.iloc[i, 0] = tq.iloc[i, 0]-aux
 
-# función para convertir formato de panadas.dataframe a list
+# función para convertir formato de pandas.dataframe a list
 Q = auxiliar_functions.prepare_melody(tq)
 
 # cargamos en una lista cada una de las canciones de la base de datos
@@ -58,12 +59,13 @@ for i in range(len(tr)):  # recorremos cada canción del dataframe
     if flag == 1:  # como hemos machacado el valor de Q necesitamos recuperarlo
         Q = P[:]
 
-    # print(f"el área minima se produce para un epsilon de {epsmin} y vale {areamin}")
-    #auxiliar_functions.dibuja(R, Q, i)
-    # auxiliar_functions.secuencia(R,Q,q)
-    # areas=auxiliar_functions.comprueba_area(R,Q,q)
+    print(
+        f"el área minima se produce para un epsilon de {epsmin} y vale {areamin}")
+    auxiliar_functions.dibuja(R, Q, i)
+    auxiliar_functions.secuencia(R, Q, q)
+    areas = auxiliar_functions.comprueba_area(R, Q, q)
 
-    # for i,j in zip(areas,ayuda):
-    #     print(i-j[0])
-    #     print(f"evento tipo {j[1]}")
+    for i, j in zip(areas, ayuda):
+        print(i-j[0])
+        print(f"evento tipo {j[1]}")
 print(result)

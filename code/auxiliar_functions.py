@@ -5,6 +5,7 @@ from matplotlib import pyplot
 import heapq
 import math
 from io import StringIO
+
 import area_inicial
 
 
