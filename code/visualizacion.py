@@ -78,6 +78,6 @@ auxiliar_functions.dibuja(R, Q, 0)
 areas = auxiliar_functions.comprueba_area(R, Q, q)
 # print(result)
 
-for i, j in zip(areas, ayuda):
-    print(i-j[0])
-    # print(f"evento tipo {j[1]}")
+# for i, j in zip(areas, ayuda):
+# print(i-j[0])
+# print(f"evento tipo {j[1]}")

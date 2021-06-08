@@ -1,5 +1,5 @@
-# calculo del area entre 2 melodias dadas. Devuelve las areas y las alturas
-# de cada tipo de rectangulo
+# Calculo del area entre 2 melodias
+# Dadas 2 melodias devuelve el area inicial y el sumatorio de las alturas
 
 def initial_area(R, Q):
     n = len(R)
@@ -69,7 +69,7 @@ def initial_area(R, Q):
                 j += 1
                 # print(h1,h2,h3,7)
 
-    # Calculo del área inicial:
+    # Calculo del area inicial:
     c00 = sum(c0)
     c11 = sum(c1)
     c22 = sum(c2)

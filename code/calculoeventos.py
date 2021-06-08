@@ -6,8 +6,8 @@
 class Event():
     def __init__(self):
         self.eps = []  # esta lista tendra tantos elementos como eventos tenga dicha nota de Q con R. cada uno de estos elementos sera otra lista que guarda
-        # el valor de epsilon en el indice 0, la topologi�a en el indice 1 y la nota de R con la que se produce el evento en el indice 2 y las
-        # 4 alturas de los 6 rectangulos involucrados. el �ltimo elemento es el n� del evento del que se trata
+        # el valor de epsilon en el indice 0, la topologia en el indice 1 y la nota de R con la que se produce el evento en el indice 2 y las
+        # 4 alturas de los 6 rectangulos involucrados. el ultimo elemento es el numero del evento del que se trata
         self.index = 0
         self.pitch = 0
 
@@ -62,7 +62,6 @@ def get_epsilons(epsilon, notaactual, notasiguiente, R, maxeps, j):
             #       Despues del evento: c3 en disminucion en la nota actual y un c3 en disminucion en la nota siguiente
             elif R[i][0] < notaactualdesplazada[0] and R[i+1][1] <= notasiguientedesplazada[1]:
                 epsilon.eps.append([e, 3, i, h1, h2, h3, h4, n])
-
             n += 1
 
 

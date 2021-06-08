@@ -134,7 +134,7 @@ def heap(q):
     for j in q:
         if len(j.eps) > 0:
             e = j.eps[0]
-            #print('\nincluir en el heap el eveto {:>3} de la nota {}:'.format(round(e[0],2),j.index))
+            # print('\nincluir en el heap el eveto {:>3} de la nota {}:'.format(round(e[0],2),j.index))
             heapq.heappush(h, [e[0], j.index, e[-1]])
             # show_tree(h)
     return h
@@ -187,19 +187,22 @@ def secuencia(R, Q, q):
 
 def comprueba_area(R, Q, q):
     """función para comprobar el área para un epsilon concreto"""
-    r = []
-    for qq in q:
-        for qqq in qq.eps:
-            r.append(qqq)
-    r = sorted(r)
+    ordered_events = []
+    for query_note in q:
+        for event_in_query_note in query_note.eps:
+            ordered_events.append(event_in_query_note)
+    print('pre-order', ordered_events)
+    ordered_events = sorted(ordered_events)
+    print('ordered_events', ordered_events)
 
     areas = []
-    for l in r:
+    for one_event in ordered_events:
         Qaux = []
         for j in range(len(Q)):
+            # print('jotasa', j)
             notaux = []
-            notaux.append(Q[j][0]+j*l[0])
-            notaux.append(Q[j][1]+(j+1)*l[0])
+            notaux.append(Q[j][0]+j*one_event[0])
+            notaux.append(Q[j][1]+(j+1)*one_event[0])
             notaux.append(Q[j][2])
             Qaux.append(notaux)
         # print(Qaux)

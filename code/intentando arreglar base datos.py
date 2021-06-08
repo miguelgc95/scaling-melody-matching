@@ -8,9 +8,9 @@ import pandas as pd
 tr = []
 # tr.append(pd.read_csv(r"C:\Users\Mike\OneDrive\Documentos\TFG\POR MI\código\TFG v5 - fusion de v3 y v4\11-D_TPabon.csv", names=["inicio", "duración", "tono", "nidea"]).drop([0], axis=0))
 # tr.append(pd.read_csv(r"C:\Users\Mike\OneDrive\Documentos\TFG\Documentación teórica\TONAS_0 para trastear\TONAS\Deblas\01-D_AMairena.csv", names=["inicio", "duración", "tono", "nidea"]).drop([0], axis=0))
-tr.append(pd.read_csv(r"C:\Users\Mike\OneDrive\Documentos\TFG\Documentación teórica\TONAS_0 para trastear\TONAS\Deblas\02-D_ChanoLobato.csv",
+# tr.append(pd.read_csv(r"C:\Users\Mike\OneDrive\Documentos\TFG\Documentación teórica\TONAS_0 para trastear\TONAS\Deblas\02-D_ChanoLobato.csv", names=["inicio", "duración", "tono", "nidea"]).drop([0], axis=0))
+tr.append(pd.read_csv(r"C:\Users\Mike\OneDrive\Documentos\TFG\Documentación teórica\TONAS_0 para trastear\TONAS\Deblas\03-D_Chocolate.csv",
           names=["inicio", "duración", "tono", "nidea"]).drop([0], axis=0))
-# tr.append(pd.read_csv(r"C:\Users\Mike\OneDrive\Documentos\TFG\Documentación teórica\TONAS_0 para trastear\TONAS\Deblas\03-D_Chocolate.csv", names=["inicio", "duración", "tono", "nidea"]).drop([0], axis=0))
 # tr.append(pd.read_csv(r"C:\Users\Mike\OneDrive\Documentos\TFG\Documentación teórica\TONAS_0 para trastear\TONAS\Deblas\04-D_JAlmaden.csv", names=["inicio", "duración", "tono", "nidea"]).drop([0], axis=0))
 # tr.append(pd.read_csv(r"C:\Users\Mike\OneDrive\Documentos\TFG\Documentación teórica\TONAS_0 para trastear\TONAS\Deblas\05-D_JHeredia.csv", names=["inicio", "duración", "tono", "nidea"]).drop([0], axis=0))
 # tr.append(pd.read_csv(r"C:\Users\Mike\OneDrive\Documentos\TFG\Documentación teórica\TONAS_0 para trastear\TONAS\Deblas\06-D_MSimon.csv", names=["inicio", "duración", "tono", "nidea"]).drop([0], axis=0))

@@ -34,6 +34,7 @@ Q = auxiliar_functions.prepare_melody(tq)
 
 # cargamos en una lista cada una de las canciones de la base de datos
 tr = dataframe.dframe()
+print(len(tr))
 
 for i in range(len(tr)):  # recorremos cada canción del dataframe
     flag = 0
@@ -59,13 +60,13 @@ for i in range(len(tr)):  # recorremos cada canción del dataframe
     if flag == 1:  # como hemos machacado el valor de Q necesitamos recuperarlo
         Q = P[:]
 
-    print(
-        f"el área minima se produce para un epsilon de {epsmin} y vale {areamin}")
-    auxiliar_functions.dibuja(R, Q, i)
-    auxiliar_functions.secuencia(R, Q, q)
-    areas = auxiliar_functions.comprueba_area(R, Q, q)
+    # print(
+    #     f"el área minima se produce para un epsilon de {epsmin} y vale {areamin}")
+    # auxiliar_functions.dibuja(R, Q, i) #
+    # auxiliar_functions.secuencia(R, Q, q)
+    # areas = auxiliar_functions.comprueba_area(R, Q, q)
 
-    for i, j in zip(areas, ayuda):
-        print(i-j[0])
-        print(f"evento tipo {j[1]}")
+    # for i, j in zip(areas, ayuda):
+    #     print(i-j[0])
+    #     print(f"evento tipo {j[1]}")
 print(result)
