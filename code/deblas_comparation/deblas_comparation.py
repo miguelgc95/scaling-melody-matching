@@ -1,31 +1,21 @@
 # The purpose of this file is to compare deblas and clasify deblas between the 2 schools Tomas Pabon and Juan de Mairena
+from code.modules.area_inicial import initial_area
 import auxiliar_functions
-import area_inicial
 import calculoeventos
 import actualizacionarea
 import dataframe
-import pandas as pd
+import helpers
 import os
+import pandas as pd
+
 
 BASE_PATH = os.getcwd()
+
 pabon_query_path = BASE_PATH + '/DB_files/deblas/11-D_TPabon.csv'
+# mairena_query_path = BASE_PATH + '/DB_files/deblas/14-D_AMairena.csv'
 
-pabon_query = pd.read_csv(pabon_query_path, names=["inicio", "duración",
-                                                   "tono", "nidea"]).drop([0], axis=0)
+Q_pabon = helpers.create_query
 
-time_where_pabon_starts = float(pabon_query.iloc[0, 0])
-
-# cambiar formato de string a float y desplazar la cancion para forzar que empiece en cero
-for i in range(len(pabon_query)):
-    if type(pabon_query.iloc[i, 0]) == str:
-        pabon_query.iloc[i, 0] = float(pabon_query.iloc[i, 0])
-    if type(pabon_query.iloc[i, 1]) == str:
-        pabon_query.iloc[i, 1] = float(pabon_query.iloc[i, 1])
-    if type(pabon_query.iloc[i, 2]) == str:
-        pabon_query.iloc[i, 2] = float(pabon_query.iloc[i, 2])
-    pabon_query.iloc[i, 0] = (pabon_query.iloc[i, 0]-time_where_pabon_starts)
-
-Q_pabon = auxiliar_functions.prepare_melody(pabon_query)
 # cargamos en una lista cada una de las canciones de la base de datos
 all_references = dataframe.dframe('exclude_pabon&mairena')
 
