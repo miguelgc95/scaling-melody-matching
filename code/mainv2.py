@@ -43,8 +43,6 @@ for i in range(len(all_references)):  # recorremos cada canción del dataframe
         R = P[:]
         flag = 1
 
-    print('contInDB', contInDB)
-
     maxeps = (R[-1][1]-Q[-1][1])/len(Q)
     Q[-1][1] = R[-1][1]
     (areainicial, h11, h22, h33) = area_inicial.initial_area(R, Q)

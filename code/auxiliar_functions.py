@@ -191,15 +191,12 @@ def comprueba_area(R, Q, q):
     for query_note in q:
         for event_in_query_note in query_note.eps:
             ordered_events.append(event_in_query_note)
-    print('pre-order', ordered_events)
     ordered_events = sorted(ordered_events)
-    print('ordered_events', ordered_events)
 
     areas = []
     for one_event in ordered_events:
         Qaux = []
         for j in range(len(Q)):
-            # print('jotasa', j)
             notaux = []
             notaux.append(Q[j][0]+j*one_event[0])
             notaux.append(Q[j][1]+(j+1)*one_event[0])
