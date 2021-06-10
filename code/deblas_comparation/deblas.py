@@ -1,12 +1,12 @@
 # The purpose of this file is to compare deblas and clasify deblas between the 2 schools Tomas Pabon and Juan de Mairena
-from code.modules.area_inicial import initial_area
-import auxiliar_functions
-import calculoeventos
-import actualizacionarea
-import dataframe
-import helpers
+import scaling-melody-matching.code.modules.area_inicial
+# from modules import area_inicial
+from code.modules import auxiliar_functions
+from code.modules import calculoeventos
+from code.modules import actualizacionarea
+from code.modules import dataframe
+from code.deblas_comparation import helpers
 import os
-import pandas as pd
 
 
 BASE_PATH = os.getcwd()
@@ -14,7 +14,7 @@ BASE_PATH = os.getcwd()
 pabon_query_path = BASE_PATH + '/DB_files/deblas/11-D_TPabon.csv'
 # mairena_query_path = BASE_PATH + '/DB_files/deblas/14-D_AMairena.csv'
 
-Q_pabon = helpers.create_query
+Q_pabon = helpers.create_query(pabon_query_path)
 
 # cargamos en una lista cada una de las canciones de la base de datos
 all_references = dataframe.dframe('exclude_pabon&mairena')
@@ -36,6 +36,7 @@ for i in range(len(all_references)):  # recorremos cada canción del dataframe
     maxeps = (R[-1][1]-Q_pabon[-1][1])/len(Q_pabon)
     Q_pabon[-1][1] = R[-1][1]
     (areainicial, h11, h22, h33) = area_inicial.initial_area(R, Q_pabon)
+    # (areainicial, h11, h22, h33) = initial_area(R, Q_pabon)
     q = calculoeventos.calculaeventos_main(R, Q_pabon, maxeps)
 
     areas = auxiliar_functions.comprueba_area(R, Q_pabon, q)

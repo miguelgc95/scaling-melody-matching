@@ -1,10 +1,10 @@
 # Main code
 
-import auxiliar_functions
-import area_inicial
-import calculoeventos
-import actualizacionarea
-import dataframe
+import modules.auxiliar_functions
+import modules.area_inicial
+import modules.calculoeventos
+import modules.actualizacionarea
+import modules.dataframe
 import pandas as pd
 import os
 
@@ -30,16 +30,16 @@ for i in range(len(tq)):  # recorremos cada nota de lo que va a ser la Q y forza
     tq.iloc[i, 0] = tq.iloc[i, 0]-aux
 
 # función para convertir formato de pandas.dataframe a list
-Q = auxiliar_functions.prepare_melody(tq)
+Q = modules.auxiliar_functions.prepare_melody(tq)
 
 # cargamos en una lista cada una de las canciones de la base de datos
-tr = dataframe.dframe()
+tr = modules.dataframe.dframe()
 print(len(tr))
 
 for i in range(len(tr)):  # recorremos cada canción del dataframe
     flag = 0
     # en cada iteración va a ir cambiando la referencia
-    R = auxiliar_functions.prepare_melody(tr[i])
+    R = modules.auxiliar_functions.prepare_melody(tr[i])
 
     if Q[-1][1] > R[-1][1]:  # en caso de que Q sea más grande que R, intercambiamos sus papeles para poder aplicar el algoritmo y escalamos R en vez de Q
         P = Q[:]
@@ -49,10 +49,10 @@ for i in range(len(tr)):  # recorremos cada canción del dataframe
 
     maxeps = (R[-1][1]-Q[-1][1])/len(Q)
     Q[-1][1] = R[-1][1]
-    (areainicial, h11, h22, h33) = area_inicial.initial_area(R, Q)
-    q = calculoeventos.calculaeventos_main(R, Q, maxeps)
-    h = auxiliar_functions.heap(q)
-    areamin, epsmin, ayuda = actualizacionarea.actualizar(
+    (areainicial, h11, h22, h33) = modules.area_inicial.initial_area(R, Q)
+    q = modules.calculoeventos.calculaeventos_main(R, Q, maxeps)
+    h = modules.auxiliar_functions.heap(q)
+    areamin, epsmin, ayuda = modules.actualizacionarea.actualizar(
         h, q, areainicial, h11, h22, h33, maxeps)
     # guardamos en una lista la info de cada una de las referencias
     result.append([areamin, epsmin])
