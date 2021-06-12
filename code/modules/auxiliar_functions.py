@@ -232,7 +232,7 @@ def create_query(query_path):
 
 def compare_query_against_referencesarray(Q, all_references):
 
-    result = []
+    result = {}
     contInDB = 0
 
     for i in range(len(all_references)):  # recorremos cada canción del dataframe
@@ -256,6 +256,6 @@ def compare_query_against_referencesarray(Q, all_references):
         if switch_R_and_Q:  # en caso de haber machacado el valor de Q necesitamos recuperarlo
             Q = P[:]
 
-        result.append(min(areas))
+        result[all_references[i].columns.values[3][18:]] = min(areas)
 
     return result
