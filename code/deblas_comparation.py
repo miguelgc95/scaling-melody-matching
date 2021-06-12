@@ -16,8 +16,23 @@ all_references = modules.dataframe.dframe('exclude_pabon&mairena')
 
 pabon_areas = modules.auxiliar_functions.compare_query_against_referencesarray(
     Q_pabon, all_references)
-print(pabon_areas)
 
 mairena_areas = modules.auxiliar_functions.compare_query_against_referencesarray(
     Q_mairena, all_references)
-print(mairena_areas)
+
+similiar_to_pabon = []
+similiar_to_mairena = []
+same_similarity = []
+
+# da igual coger similiar_to_pabon que mairena_areas porque tienes las mismas keys
+for name in pabon_areas.keys():
+    if pabon_areas[name] < mairena_areas[name]:
+        similiar_to_pabon.append(name)
+    elif pabon_areas[name] > mairena_areas[name]:
+        similiar_to_mairena.append(name)
+    elif pabon_areas[name] == mairena_areas[name]:
+        same_similarity.append(name)
+
+print('similiar_to_pabon', similiar_to_pabon)
+print('similiar_to_mairena', similiar_to_mairena)
+print('same_similarity', same_similarity)
