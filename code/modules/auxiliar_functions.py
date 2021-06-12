@@ -249,8 +249,6 @@ def compare_query_against_referencesarray(Q, all_references):
 
         maxeps = (R[-1][1]-Q[-1][1])/len(Q)
         Q[-1][1] = R[-1][1]
-        (areainicial, h11, h22, h33) = area_inicial.initial_area(R, Q)
-        # (areainicial, h11, h22, h33) = initial_area(R, Q)
         q = calculoeventos.calculaeventos_main(R, Q, maxeps)
 
         areas = comprueba_area(R, Q, q)
