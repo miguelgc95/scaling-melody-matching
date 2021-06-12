@@ -7,6 +7,7 @@ import math
 from io import StringIO
 import pandas as pd
 from . import area_inicial
+from . import calculoeventos
 
 
 # Creacion de melodías para tener datos con los que trabajar
@@ -227,3 +228,36 @@ def create_query(query_path):
         query.iloc[i, 0] = (query.iloc[i, 0]-time_where_query_starts)
 
     return prepare_melody(query)
+
+
+def compare_query_against_referencesarray(Q, all_references):
+
+    result = []
+    contInDB = 0
+
+    for i in range(len(all_references)):  # recorremos cada canción del dataframe
+        contInDB = contInDB + 1
+        switch_R_and_Q = False
+        # en cada iteración va a ir cambiando la referencia
+        R = prepare_melody(all_references[i])
+
+        if Q[-1][1] > R[-1][1]:  # en caso de que Q sea más grande que R, intercambiamos sus papeles para poder aplicar el algoritmo y escalamos R en vez de Q
+            P = Q[:]
+            Q = R[:]
+            R = P[:]
+            switch_R_and_Q = True
+
+        maxeps = (R[-1][1]-Q[-1][1])/len(Q)
+        Q[-1][1] = R[-1][1]
+        (areainicial, h11, h22, h33) = area_inicial.initial_area(R, Q)
+        # (areainicial, h11, h22, h33) = initial_area(R, Q)
+        q = calculoeventos.calculaeventos_main(R, Q, maxeps)
+
+        areas = comprueba_area(R, Q, q)
+
+        if switch_R_and_Q:  # en caso de haber machacado el valor de Q necesitamos recuperarlo
+            Q = P[:]
+
+        result.append(min(areas))
+
+    return result
