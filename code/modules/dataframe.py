@@ -12,6 +12,9 @@ def dframe(exclude):
     if exclude == 'all_deblas':
         references_array = all_deblas()
 
+    if exclude == 'all_martinetes':
+        references_array = all_martinetes()
+
     # el siguiente bucle es para 2 cosas, tratar los datos como floats(por algun motivo a veces lo trata como str) y paraque las melodi�as empiecen desde el segundo cero
     for reference in references_array:  # recorremos cada cancion
         start_time = float(reference.iloc[0, 0])
@@ -40,6 +43,15 @@ def all_deblas():
     references_array = []
     # el metodo .drop para quitar la primera columna/fila?
     for path_name in glob.glob("./DB_files/deblas/*.csv"):
+        references_array.append(pd.read_csv(
+            path_name, names=["inicio", "duracion", "tono", path_name]).drop([0], axis=0))
+    return references_array
+
+
+def all_martinetes():
+    references_array = []
+    # el metodo .drop para quitar la primera columna/fila?
+    for path_name in glob.glob("./DB_files/martinetes/*.csv"):
         references_array.append(pd.read_csv(
             path_name, names=["inicio", "duracion", "tono", path_name]).drop([0], axis=0))
     return references_array
