@@ -41,5 +41,5 @@ def all_deblas():
     # el metodo .drop para quitar la primera columna/fila?
     for path_name in glob.glob("./DB_files/deblas/*.csv"):
         references_array.append(pd.read_csv(
-            path_name, names=["inicio", "duracion", "tono", "nidea"]).drop([0], axis=0))
+            path_name, names=["inicio", "duracion", "tono", path_name]).drop([0], axis=0))
     return references_array
