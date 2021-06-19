@@ -9,10 +9,10 @@ def dframe(exclude):
     if exclude == 'exclude_pabon&mairena':
         references_array = exclude_pabon_and_mairena()
 
-    if exclude == 'all_deblas':
+    if exclude == 'none_deblas':
         references_array = all_deblas()
 
-    if exclude == 'all_martinetes':
+    if exclude == 'none_martinetes':
         references_array = all_martinetes()
 
     # el siguiente bucle es para 2 cosas, tratar los datos como floats(por algun motivo a veces lo trata como str) y paraque las melodi�as empiecen desde el segundo cero
