@@ -21,11 +21,8 @@ for i in range(len(all_deblas)):
         Q, all_references)
     all_areas.append(areas)
 
-print('allareas', len(all_areas))
-
 
 distance_matrix = np.zeros((len(all_deblas), len(all_deblas)))
-
 
 for i in range(len(all_areas)):
     values = list(all_areas[i].values())
@@ -33,6 +30,7 @@ for i in range(len(all_areas)):
         distance_matrix[i][len(all_deblas) - j - 1] = values[len(values)-j-1]
         distance_matrix[len(all_deblas) - j - 1][i] = values[len(values)-j-1]
 
+print(distance_matrix)
 
 G = nx.from_numpy_matrix(distance_matrix)
 nx.draw(G)
