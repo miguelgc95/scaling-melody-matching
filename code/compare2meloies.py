@@ -1,9 +1,5 @@
 # este archivo pretende sustituir al main del programa, ya que tiene la misma funcionalidad. es en realidad una copia de "intentando arreglar base de datos" ampliandola para que no solo compare 2 a 2
-import auxiliar_functions
-import area_inicial
-import calculoeventos
-import actualizacionarea
-import dataframe
+import modules
 import pandas as pd
 import os
 
@@ -31,12 +27,12 @@ Q = auxiliar_functions.prepare_melody(query)
 
 
 # REFERENCE PRE-TREATMENT
-# reference_path = BASE_PATH + '/DB_files/01-D_AMairena.csv'
+reference_path = BASE_PATH + '/DB_files/01-D_AMairena.csv'
 # reference_path = BASE_PATH + '/DB_files/02-D_ChanoLobato.csv'
 # reference_path = BASE_PATH + '/DB_files/03-D_Chocolate.csv'
 # reference_path = BASE_PATH + '/DB_files/04-D_JAlmaden.csv'
 # reference_path = BASE_PATH + '/DB_files/05-D_JHeredia.csv'
-reference_path = BASE_PATH + '/DB_files/09-D_PdeLucia.csv'
+# reference_path = BASE_PATH + '/DB_files/09-D_PdeLucia.csv'
 
 reference = pd.read_csv(reference_path, names=["inicio", "duración",
                                                "tono", "nidea"]).drop([0], axis=0)

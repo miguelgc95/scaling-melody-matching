@@ -36,5 +36,6 @@ for i in range(len(all_areas)):
 print(distance_matrix)
 
 G = nx.from_numpy_matrix(distance_matrix)
+G.nodes
 nx.draw(G)
 plt.show()
