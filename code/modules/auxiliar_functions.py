@@ -116,16 +116,25 @@ def dibuja(R, Q, n):
     # a dibujar
     pyplot.figure(n)
 
-    pyplot.hlines(y, x, xmax, "b", label="R")
-    pyplot.vlines(xmax, 0, 1000, "b", "dotted")
+    ax = pyplot.axes()
 
-    pyplot.hlines(y2, x2, x2max, "r", label="Q")
-    pyplot.vlines(x2max, 0, 1000, "r", "dotted")
+    pyplot.hlines(y, x, xmax, "b", label="R", linewidth=3)
+    pyplot.vlines(xmax, 0, 500, "b", "dotted", linewidth=2)
+
+    pyplot.hlines(y2, x2, x2max, "r", label="Q", linewidth=3)
+    pyplot.vlines(x2max, 0, 500, "r", "dotted", linewidth=2)
 
     pyplot.axhline(0, color="k")
     pyplot.axvline(0, color="k")
 
-    pyplot.legend()
+    # pyplot.legend()
+
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    ax.spines['bottom'].set_visible(False)
+    ax.spines['left'].set_visible(False)
+
+    # pyplot.axvspan(3, 4, ymin=.4, ymax=.6, color='y', alpha=0.5, lw=0)
     pyplot.show()
 
 

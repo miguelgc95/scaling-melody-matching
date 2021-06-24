@@ -1,6 +1,5 @@
 # este archivo pretende sustituir al main del programa, ya que tiene la misma funcionalidad. es en realidad una copia de "intentando arreglar base de datos" ampliandola para que no solo compare 2 a 2
 import modules
-import pandas as pd
 import os
 
 BASE_PATH = os.getcwd()

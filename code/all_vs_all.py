@@ -25,14 +25,19 @@ for i in range(len(all_database)):
     all_areas.append(areas)
 
 distance_matrix = np.zeros((len(all_database), len(all_database)))
-print('pk')
+
 for i in range(len(all_areas)):
     values = list(all_areas[i].values())
     for j in range(len(values)):
         distance_matrix[i][len(all_database) - j - 1] = values[len(values)-j-1]
         distance_matrix[len(all_database) - j - 1][i] = values[len(values)-j-1]
 
-
 G = nx.from_numpy_matrix(distance_matrix)
-nx.draw(G)
+color_map = []
+for node in G:
+    if node < len(all_deblas):
+        color_map.append('blue')
+    else:
+        color_map.append('red')
+nx.draw(G, node_color=color_map, with_labels=True)
 plt.show()

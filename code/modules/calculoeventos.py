@@ -71,8 +71,6 @@ def display(q):
             print(
                 f"\nEl segmento {k.index} tiene un evento de epsilon={l[0]} del tipo {l[1]} con la nota {l[2]}")
 
-# main
-
 
 def calculaeventos_main(R, Q, maxeps):
     q = []  # esta variable es una lista de objetos events
