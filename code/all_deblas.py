@@ -13,6 +13,13 @@ all_deblas = modules.dataframe.dframe('none_deblas')
 
 all_areas = []
 
+names = []
+
+for i in range(len(all_deblas)):
+    names.append(all_deblas[i].columns.values[3][21:-4])
+
+print(names)
+
 for i in range(len(all_deblas)):
     query_path = all_deblas[i].columns.values[3]
     Q = modules.auxiliar_functions.create_query(query_path)
@@ -30,11 +37,19 @@ for i in range(len(all_areas)):
         distance_matrix[i][len(all_deblas) - j - 1] = values[len(values)-j-1]
         distance_matrix[len(all_deblas) - j - 1][i] = values[len(values)-j-1]
 
-print(distance_matrix)
+for row in distance_matrix:
+    for value in range(len(row)):
+        if value == len(row)-1:
+            print(row[value])
+        else:
+            print(row[value], end=',')
+    # print('\n')
 
-G = nx.from_numpy_matrix(distance_matrix)
-nx.draw(G)
-plt.show()
+# G = nx.from_numpy_matrix(distance_matrix)
+# nx.draw(G)
+# plt.show()
+
+
 # G = nx.relabel_nodes(
 #     G, dict(zip(range(len(G.nodes())), string.ascii_uppercase)))
 
