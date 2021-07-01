@@ -35,7 +35,7 @@ def exclude_pabon_and_mairena():
     for path_name in glob.glob("./DB_files/deblas/*.csv"):
         if ('TPabon' not in path_name) and ('AMairena' not in path_name):
             references_array.append(pd.read_csv(
-                path_name, names=["inicio", "duracion", "tono", path_name[21:-4]]).drop([0], axis=0))
+                path_name, names=["inicio", "duracion", "tono", path_name]).drop([0], axis=0))
     return references_array
 
 
@@ -44,7 +44,7 @@ def all_deblas():
     # el metodo .drop para quitar la primera columna/fila?
     for path_name in glob.glob("./DB_files/deblas/*.csv"):
         references_array.append(pd.read_csv(
-            path_name, names=["inicio", "duracion", "tono", path_name][21:-4]).drop([0], axis=0))
+            path_name, names=["inicio", "duracion", "tono", path_name]).drop([0], axis=0))
     return references_array
 
 
@@ -53,5 +53,5 @@ def all_martinetes():
     # el metodo .drop para quitar la primera columna/fila?
     for path_name in glob.glob("./DB_files/martinetes/*.csv"):
         references_array.append(pd.read_csv(
-            path_name, names=["inicio", "duracion", "tono", path_name[21:-4]]).drop([0], axis=0))
+            path_name, names=["inicio", "duracion", "tono", path_name]).drop([0], axis=0))
     return references_array

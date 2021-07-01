@@ -39,6 +39,11 @@
 # plt.pyplot.fill_between(x2, y2, step="pre")
 # plt.pyplot.show()
 
-import glob
+# import glob
 
-print(glob.glob("./DB_files/deblas/*.csv")[0][21:-4])
+# print(glob.glob("./DB_files/deblas/*.csv")[0][21:-4])
+
+import numpy as np
+
+dicti = {'a': 1}
+print(np.list(dicti.values()).flat())

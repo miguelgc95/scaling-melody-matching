@@ -13,16 +13,12 @@ all_deblas = modules.dataframe.dframe('none_deblas')
 
 all_areas = []
 
-names = []
-
-for i in range(len(all_deblas)):
-    names.append(all_deblas[i].columns.values[3][21:-4])
-
-print(names)
 
 for i in range(len(all_deblas)):
     query_path = all_deblas[i].columns.values[3]
-    Q = modules.auxiliar_functions.create_query(query_path)
+    print(query_path)
+    Q_dict = modules.auxiliar_functions.create_query(query_path)
+    Q = list(Q_dict.values())[0]
     all_references = all_deblas[i+1:len(all_deblas)]
     areas = modules.auxiliar_functions.compare_query_against_referencesarray(
         Q, all_references)

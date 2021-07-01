@@ -86,7 +86,7 @@ def prepare_melody(melody_dframe):
             S[-1][1] = melody_dframe.iloc[i+1, 0]
         s.append(melody_dframe.iloc[i, 2])
         S.append(s)
-    return S
+    return {melody_dframe.columns.values[3]: S}
 
 # def match_initial_time(Q,R):
 #     """Ajustar el tiempo de comienzo de ambas melodías al instante cero"""
@@ -223,7 +223,7 @@ def comprueba_area(R, Q, q):
 def create_query(query_path):
     """Generar y preparar melodia de consulta apartir de un archivo .csv"""
     query = pd.read_csv(query_path, names=["inicio", "duración",
-                                           "tono", query_path[21:-4]]).drop([0], axis=0)
+                                           "tono", query_path[62:-4]]).drop([0], axis=0)
 
     time_where_query_starts = float(query.iloc[0, 0])
 
@@ -247,8 +247,8 @@ def compare_query_against_referencesarray(Q, all_references):
     for i in range(len(all_references)):  # recorremos cada canción del dataframe
         switch_R_and_Q = False
         # en cada iteración va a ir cambiando la referencia
-        R = prepare_melody(all_references[i])
-
+        R_dict = prepare_melody(all_references[i])
+        R = list(R_dict.values())[0]
         if Q[-1][1] > R[-1][1]:  # en caso de que Q sea más grande que R, intercambiamos sus papeles para poder aplicar el algoritmo y escalamos R en vez de Q
             P = Q[:]
             Q = R[:]
@@ -264,7 +264,7 @@ def compare_query_against_referencesarray(Q, all_references):
         if switch_R_and_Q:  # en caso de haber machacado el valor de Q necesitamos recuperarlo
             Q = P[:]
 
-        result[all_references[i].columns.values[3]] = min(areas)
+        result[list(R_dict.keys())[0]] = min(areas)
 
     return result
 

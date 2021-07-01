@@ -1,6 +1,7 @@
 # este archivo pretende sustituir al main del programa, ya que tiene la misma funcionalidad. es en realidad una copia de "intentando arreglar base de datos" ampliandola para que no solo compare 2 a 2
 import modules
 import os
+import numpy as np
 
 BASE_PATH = os.getcwd()
 
@@ -15,11 +16,14 @@ query_path = BASE_PATH + '/DB_files/deblas/02-D_ChanoLobato.csv'
 # query_path = BASE_PATH + '/DB_files/deblas/09-D_PdeLucia.csv'
 # query_path = BASE_PATH + '/DB_files/deblas/10-D_TalegondeCordoba.csv'
 # query_path = BASE_PATH + '/DB_files/deblas/11-D_TPabon.csv'
-Q = modules.auxiliar_functions.create_query(query_path)
+# query_path = BASE_PATH + '/DB_files/deblas/14-D_AMairena.csv'
+Q_dict = modules.auxiliar_functions.create_query(query_path)
+Q = list(Q_dict.values())[0]
 
 # We can use the function 'create_query' to create the reference as long as it just create a valid melody from a .csv file
 reference_path = BASE_PATH + '/DB_files/deblas/11-D_TPabon.csv'
-R = modules.auxiliar_functions.create_query(reference_path)
+R_dict = modules.auxiliar_functions.create_query(reference_path)
+R = list(R_dict.values())[0]
 
 # aplicamos el algoritmo
 
