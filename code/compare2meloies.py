@@ -4,13 +4,21 @@ import os
 
 BASE_PATH = os.getcwd()
 
-query_path = BASE_PATH + '/DB_files/deblas/11-D_TPabon.csv'
-
+# query_path = BASE_PATH + '/DB_files/deblas/01-D_AMairena.csv'
+query_path = BASE_PATH + '/DB_files/deblas/02-D_ChanoLobato.csv'
+# query_path = BASE_PATH + '/DB_files/deblas/03-D_Chocolate.csv'
+# query_path = BASE_PATH + '/DB_files/deblas/04-D_JAlmaden.csv'
+# query_path = BASE_PATH + '/DB_files/deblas/05-D_JHeredia.csv'
+# query_path = BASE_PATH + '/DB_files/deblas/06-D_MSimon.csv'
+# query_path = BASE_PATH + '/DB_files/deblas/07-D_MVargas.csv'
+# query_path = BASE_PATH + '/DB_files/deblas/08-D_Naranjito.csv'
+# query_path = BASE_PATH + '/DB_files/deblas/09-D_PdeLucia.csv'
+# query_path = BASE_PATH + '/DB_files/deblas/10-D_TalegondeCordoba.csv'
+# query_path = BASE_PATH + '/DB_files/deblas/11-D_TPabon.csv'
 Q = modules.auxiliar_functions.create_query(query_path)
 
-reference_path = BASE_PATH + '/DB_files/deblas/01-D_AMairena.csv'
-
 # We can use the function 'create_query' to create the reference as long as it just create a valid melody from a .csv file
+reference_path = BASE_PATH + '/DB_files/deblas/11-D_TPabon.csv'
 R = modules.auxiliar_functions.create_query(reference_path)
 
 # aplicamos el algoritmo
@@ -28,18 +36,25 @@ h = modules.auxiliar_functions.heap(q)
 areamin, epsmin, ayuda = modules.actualizacionarea.actualizar(
     h, q, areainicial, h11, h22, h33, maxeps)
 
-result = [areamin, epsmin]
 
 # auxiliar_functions.dibuja(R,Q,0)
 areas = modules.auxiliar_functions.comprueba_area(R, Q, q)
 
-print(result)
+
+result_eficient = areamin
+
+result_non_eficient = min(areas)
+
+# print(R.columns.values[3])
+
+print('result_eficient \t\t\t', result_eficient)
+print('result_non_eficient \t', result_non_eficient)
 
 # if areamin < 0:
-cont = 0
-for i, j in zip(areas, ayuda):
-    cont = cont + 1
-    # print(i-j[0])
-    # print('cont', cont)
-    print(f"{i} - {j[0]} = {i-j[0]}")
-    # print(f"evento tipo {j[1]}")
+# cont = 0
+# for i, j in zip(areas, ayuda):
+#     cont = cont + 1
+#     # print(i-j[0])
+#     # print('cont', cont)
+#     print(f"{i} - {j[0]} = {i-j[0]}")
+# print(f"evento tipo {j[1]}")

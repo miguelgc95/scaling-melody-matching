@@ -64,27 +64,27 @@ def generate_melodies():
     return(R, Q)
 
 
-def prepare_melody(x):
+def prepare_melody(melody_dframe):
     """Tratamiento de la base datos para poder usarla en el algoritmo"""
     S = []  # es la lista en la que queda guardada la melodía en el formato correcto
-    le = len(x)
-    for i in range(le):
+
+    for i in range(len(melody_dframe)):
         # este if es para contemplar los silencios como una nota de pitch 0
-        if i > 0 and abs(S[-1][1]-x.iloc[i, 0]) > 0.001:
+        if i > 0 and abs(S[-1][1]-melody_dframe.iloc[i, 0]) > 0.001:
             s = []
             # por eso se le da el final de la nota anterior como inicio de la nueva nota
             s.append(S[-1][1])
             # queremos que dure hasta que se empieza a cantar de nuevo
-            s.append(x.iloc[i, 0])
+            s.append(melody_dframe.iloc[i, 0])
             s.append(0)  # y el pitch evidentemente es 0
             S.append(s)
         s = []
-        s.append(x.iloc[i, 0])
-        s.append(x.iloc[i, 0]+x.iloc[i, 1])
+        s.append(melody_dframe.iloc[i, 0])
+        s.append(melody_dframe.iloc[i, 0]+melody_dframe.iloc[i, 1])
 
-        if i > 0 and (i+1) < le and S[-1][1] > x.iloc[i+1, 0]:
-            S[-1][1] = x.iloc[i+1, 0]
-        s.append(x.iloc[i, 2])
+        if i > 0 and (i+1) < len(melody_dframe) and S[-1][1] > melody_dframe.iloc[i+1, 0]:
+            S[-1][1] = melody_dframe.iloc[i+1, 0]
+        s.append(melody_dframe.iloc[i, 2])
         S.append(s)
     return S
 
@@ -223,7 +223,7 @@ def comprueba_area(R, Q, q):
 def create_query(query_path):
     """Generar y preparar melodia de consulta apartir de un archivo .csv"""
     query = pd.read_csv(query_path, names=["inicio", "duración",
-                                           "tono", "nidea"]).drop([0], axis=0)
+                                           "tono", query_path[21:-4]]).drop([0], axis=0)
 
     time_where_query_starts = float(query.iloc[0, 0])
 
@@ -264,7 +264,7 @@ def compare_query_against_referencesarray(Q, all_references):
         if switch_R_and_Q:  # en caso de haber machacado el valor de Q necesitamos recuperarlo
             Q = P[:]
 
-        result[all_references[i].columns.values[3][18:]] = min(areas)
+        result[all_references[i].columns.values[3]] = min(areas)
 
     return result
 
@@ -296,6 +296,6 @@ def eficient_compare_query_against_referencesarray(Q, all_references):
         if switch_R_and_Q:  # en caso de haber machacado el valor de Q necesitamos recuperarlo
             Q = P[:]
 
-        result[all_references[i].columns.values[3][18:]] = areamin
+        result[all_references[i].columns.values[3]] = areamin
 
     return result
