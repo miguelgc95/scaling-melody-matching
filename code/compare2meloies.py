@@ -6,7 +6,7 @@ import numpy as np
 BASE_PATH = os.getcwd()
 
 # query_path = BASE_PATH + '/DB_files/deblas/01-D_AMairena.csv'
-query_path = BASE_PATH + '/DB_files/deblas/02-D_ChanoLobato.csv'
+# query_path = BASE_PATH + '/DB_files/deblas/02-D_ChanoLobato.csv'
 # query_path = BASE_PATH + '/DB_files/deblas/03-D_Chocolate.csv'
 # query_path = BASE_PATH + '/DB_files/deblas/04-D_JAlmaden.csv'
 # query_path = BASE_PATH + '/DB_files/deblas/05-D_JHeredia.csv'
@@ -17,6 +17,7 @@ query_path = BASE_PATH + '/DB_files/deblas/02-D_ChanoLobato.csv'
 # query_path = BASE_PATH + '/DB_files/deblas/10-D_TalegondeCordoba.csv'
 # query_path = BASE_PATH + '/DB_files/deblas/11-D_TPabon.csv'
 # query_path = BASE_PATH + '/DB_files/deblas/14-D_AMairena.csv'
+query_path = BASE_PATH + '/DB_files/deblas/18-D_DiegoClavel.csv'
 Q_dict = modules.auxiliar_functions.create_query(query_path)
 Q = list(Q_dict.values())[0]
 
@@ -53,6 +54,21 @@ result_non_eficient = min(areas)
 
 print('result_eficient \t\t\t', result_eficient)
 print('result_non_eficient \t', result_non_eficient)
+
+modules.auxiliar_functions.dibuja(R, Q, 0)
+print(epsmin)
+
+Qaux = []
+for j in range(len(Q)):
+    notaux = []
+    notaux.append(Q[j][0]+j*epsmin)
+    notaux.append(Q[j][1]+(j+1)*epsmin)
+    notaux.append(Q[j][2])
+    Qaux.append(notaux)
+# print(Qaux)
+Qaux[-1][1] = R[-1][1]
+
+modules.auxiliar_functions.dibuja(R, Qaux, 1)
 
 # if areamin < 0:
 # cont = 0

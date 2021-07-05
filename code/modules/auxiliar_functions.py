@@ -120,10 +120,10 @@ def dibuja(R, Q, n):
     ax = pyplot.axes()
 
     pyplot.hlines(y, x, xmax, "b", label="R", linewidth=3)
-    pyplot.vlines(xmax, 0, 500, "b", "dotted", linewidth=2)
+    pyplot.vlines(xmax, 0, 100, "b", "dotted", linewidth=2)
 
     pyplot.hlines(y2, x2, x2max, "r", label="Q", linewidth=3)
-    pyplot.vlines(x2max, 0, 500, "r", "dotted", linewidth=2)
+    pyplot.vlines(x2max, 0, 100, "r", "dotted", linewidth=2)
 
     pyplot.axhline(0, color="k")
     pyplot.axvline(0, color="k")
@@ -183,6 +183,7 @@ def secuencia(R, Q, q):
     r = sorted(r)
 
     for l in r:
+        print('la l', l)
         Qaux = []
         for j in range(len(Q)):
             notaux = []
@@ -297,5 +298,36 @@ def eficient_compare_query_against_referencesarray(Q, all_references):
             Q = P[:]
 
         result[all_references[i].columns.values[3]] = areamin
+
+    return result
+
+
+def areainicial_vs_areamin(Q, all_references):
+
+    result = {}
+
+    for i in range(len(all_references)):  # recorremos cada canción del dataframe
+        switch_R_and_Q = False
+        # en cada iteración va a ir cambiando la referencia
+        R_dict = prepare_melody(all_references[i])
+        R = list(R_dict.values())[0]
+        if Q[-1][1] > R[-1][1]:  # en caso de que Q sea más grande que R, intercambiamos sus papeles para poder aplicar el algoritmo y escalamos R en vez de Q
+            P = Q[:]
+            Q = R[:]
+            R = P[:]
+            switch_R_and_Q = True
+
+        maxeps = (R[-1][1]-Q[-1][1])/len(Q)
+        Q[-1][1] = R[-1][1]
+
+        (areainicial, h11, h22, h33) = area_inicial.initial_area(R, Q)
+        q = calculoeventos.calculaeventos_main(R, Q, maxeps)
+
+        areas = comprueba_area(R, Q, q)
+
+        if switch_R_and_Q:  # en caso de haber machacado el valor de Q necesitamos recuperarlo
+            Q = P[:]
+
+        result[list(R_dict.keys())[0]] = [areainicial, min(areas)]
 
     return result

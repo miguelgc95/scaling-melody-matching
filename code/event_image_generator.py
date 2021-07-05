@@ -44,4 +44,4 @@ h = modules.auxiliar_functions.heap(q)
 areamin, epsmin, ayuda = modules.actualizacionarea.actualizar(
     h, q, areainicial, h11, h22, h33, maxeps)
 
-# modules.auxiliar_functions.secuencia(R, Q, q)
+modules.auxiliar_functions.secuencia(R, Q, q)
