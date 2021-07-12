@@ -15,7 +15,9 @@ all_areas = []
 
 for i in range(len(all_martinetes)):
     query_path = all_martinetes[i].columns.values[3]
-    Q = modules.auxiliar_functions.create_query(query_path)
+    print(query_path)
+    Q_dict = modules.auxiliar_functions.create_query(query_path)
+    Q = list(Q_dict.values())[0]
     all_references = all_martinetes[i+1:len(all_martinetes)]
     areas = modules.auxiliar_functions.compare_query_against_referencesarray(
         Q, all_references)
@@ -33,9 +35,17 @@ for i in range(len(all_areas)):
                         1][i] = values[len(values)-j-1]
 
 
-print(distance_matrix)
+for row in distance_matrix:
+    for value in range(len(row)):
+        if value == len(row)-1:
+            print(row[value])
+        else:
+            print(row[value], end=',')
 
-G = nx.from_numpy_matrix(distance_matrix)
-G.nodes
-nx.draw(G)
-plt.show()
+
+# print(distance_matrix)
+
+# G = nx.from_numpy_matrix(distance_matrix)
+# G.nodes
+# nx.draw(G)
+# plt.show()

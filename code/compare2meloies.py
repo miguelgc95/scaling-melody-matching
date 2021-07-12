@@ -16,7 +16,6 @@ BASE_PATH = os.getcwd()
 # query_path = BASE_PATH + '/DB_files/deblas/09-D_PdeLucia.csv'
 # query_path = BASE_PATH + '/DB_files/deblas/10-D_TalegondeCordoba.csv'
 # query_path = BASE_PATH + '/DB_files/deblas/11-D_TPabon.csv'
-# query_path = BASE_PATH + '/DB_files/deblas/14-D_AMairena.csv'
 query_path = BASE_PATH + '/DB_files/deblas/18-D_DiegoClavel.csv'
 Q_dict = modules.auxiliar_functions.create_query(query_path)
 Q = list(Q_dict.values())[0]
@@ -34,6 +33,8 @@ if Q[-1][1] > R[-1][1]:  # en caso de que Q sea más grande que R, intercambiamo
     R = P[:]
 
 maxeps = (R[-1][1]-Q[-1][1])/len(Q)
+modules.auxiliar_functions.dibuja(R, Q, 0)
+
 Q[-1][1] = R[-1][1]
 (areainicial, h11, h22, h33) = modules.area_inicial.initial_area(R, Q)
 q = modules.calculoeventos.calculaeventos_main(R, Q, maxeps)

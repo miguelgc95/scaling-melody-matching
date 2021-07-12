@@ -13,7 +13,6 @@ all_deblas = modules.dataframe.dframe('none_deblas')
 
 all_areas = []
 
-
 for i in range(len(all_deblas)):
     query_path = all_deblas[i].columns.values[3]
     print(query_path)
