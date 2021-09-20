@@ -120,15 +120,15 @@ def dibuja(R, Q, n):
     ax = pyplot.axes()
 
     pyplot.hlines(y, x, xmax, "b", label="R", linewidth=3)
-    pyplot.vlines(xmax, 0, 100, "b", "dotted", linewidth=2)
+    pyplot.vlines(xmax, 0, 70, "b", "dotted", linewidth=2)
 
     pyplot.hlines(y2, x2, x2max, "r", label="Q", linewidth=3)
-    pyplot.vlines(x2max, 0, 100, "r", "dotted", linewidth=2)
+    pyplot.vlines(x2max, 0, 70, "r", "dotted", linewidth=2)
 
     pyplot.axhline(0, color="k")
     pyplot.axvline(0, color="k")
 
-    # pyplot.legend()
+    pyplot.legend()
 
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
